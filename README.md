@@ -1,4 +1,4 @@
 SimpleMjpegViewImWatch
 ======================
 
-Simple Mjpeg Viewwer for "i'm Watch"
+Simple Mjpeg Viewer for "i'm Watch"
