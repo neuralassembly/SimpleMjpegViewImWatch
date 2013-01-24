@@ -5,7 +5,7 @@
 #include <../jpeg8d/jpeglib.h>
 #include <setjmp.h>
 
-#define  LOG_TAG    "TEST"
+#define  LOG_TAG    "MJPEG"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
