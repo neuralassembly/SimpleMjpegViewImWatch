@@ -52,7 +52,9 @@ public class MjpegActivity extends Activity {
     public void onPause() {
     	if(DEBUG) Log.d(TAG,"onPause()");
         super.onPause();
-        mv.stopPlayback();
+        if(mv!=null){
+        	mv.stopPlayback();
+        }
     }
     public void onStop() {
     	if(DEBUG) Log.d(TAG,"onStop()");
