@@ -32,8 +32,8 @@ public class MjpegActivity extends Activity {
     
 	private int ip_ad1 = 192;
 	private int ip_ad2 = 168;
-	private int ip_ad3 = 11;
-	private int ip_ad4 = 6;
+	private int ip_ad3 = 44;
+	private int ip_ad4 = 1;
 	private int ip_port = 8080;
 	private String ip_command = "videofeed";
 
