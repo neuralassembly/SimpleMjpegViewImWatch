@@ -180,7 +180,7 @@ int my_jpeg_load_dht (struct jpeg_decompress_struct *info, unsigned char *dht,
     return 0;
 }
 
-void processimage (const void *p, int l, int *rgbbuf)
+int processimage (const void *p, int l, int *rgbbuf, int w, int h)
 {
 
 	struct jpeg_decompress_struct mycinfo;
@@ -226,6 +226,11 @@ void processimage (const void *p, int l, int *rgbbuf)
 
 	int y = 0;
 	int *outp=rgbbuf;
+	int skip = 0;
+	if(w!=IMG_WIDTH || h!=IMG_HEIGHT){
+		skip = 1;
+	}
+
 	while ( mycinfo.output_scanline < mycinfo.image_height) {
 
 		jpeg_read_scanlines(&mycinfo, jpegbuffer, 1);
@@ -233,10 +238,12 @@ void processimage (const void *p, int l, int *rgbbuf)
 		int xx;
 		int x3;
 
-		for(xx = 0, x3 = 0; xx < IMG_WIDTH && x3 < row_stride; xx++, x3 += 3)
-		{
-			outp[y+xx] = 0xff000000 | jpegbuffer[0][x3 + 0]<<16
-				| jpegbuffer[0][x3 + 1]<<8 | jpegbuffer[0][x3 + 2];
+		if(!skip){
+			for(xx = 0, x3 = 0; xx < IMG_WIDTH && x3 < row_stride; xx++, x3 += 3)
+			{
+				outp[y+xx] = 0xff000000 | jpegbuffer[0][x3 + 0]<<16
+					| jpegbuffer[0][x3 + 1]<<8 | jpegbuffer[0][x3 + 2];
+			}
 		}
 
 		y+=IMG_WIDTH;
@@ -245,18 +252,29 @@ void processimage (const void *p, int l, int *rgbbuf)
 	jpeg_finish_decompress(&mycinfo);
 	jpeg_destroy_decompress(&mycinfo);
 	
+	if(skip){
+		return -1;
+	}else{
+		return 0;
+	}
 }
 
-void Java_com_camera_simplemjpeg_imwatch_MjpegInputStream_pixeltorgb( JNIEnv* env,jobject thiz,
-	 jbyteArray jp, jint l, jintArray ji){
+int Java_com_camera_simplemjpeg_imwatch_MjpegInputStream_pixeltorgb( JNIEnv* env,jobject thiz,
+	 jbyteArray jp, jint l, jintArray ji, jint w, jint h){
 
 	jboolean b;
 
 	jbyte *p=(*env)->GetByteArrayElements(env,jp,&b);
 	jint *rgbbuf=(*env)->GetIntArrayElements(env,ji,&b);
 		
-	processimage ((const void *)p, l, rgbbuf);
+	int ret = processimage ((const void *)p, l, rgbbuf, w, h);
 
 	(*env)->ReleaseIntArrayElements(env, ji, rgbbuf, 0);
 	(*env)->ReleaseByteArrayElements(env, jp, p, 0);
+
+	if(ret==-1){
+		return -1;
+	}else{
+		return 0;
+	}
 }

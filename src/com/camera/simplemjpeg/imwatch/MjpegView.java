@@ -11,6 +11,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -47,10 +48,10 @@ public class MjpegView extends SurfaceView implements SurfaceHolder.Callback {
 	private boolean suspending = false;
 	
 	private Bitmap bmp = null;
-	// hard-coded image size
-	public static final int IMG_WIDTH=320;
-	public static final int IMG_HEIGHT=240;
-
+	// image size
+	private int IMG_WIDTH=320;
+	private int IMG_HEIGHT=240;
+	
     public class MjpegViewThread extends Thread {
         private SurfaceHolder mSurfaceHolder;
         private int frameCounter = 0;
@@ -128,8 +129,10 @@ public class MjpegView extends SurfaceView implements SurfaceHolder.Callback {
                 		if(bmp==null){
                 			bmp = Bitmap.createBitmap(IMG_WIDTH, IMG_HEIGHT, Bitmap.Config.ARGB_8888);
                 		}
-                		mIn.readMjpegFrame(bmp);
-
+                		int ret = mIn.readMjpegFrame(bmp);
+                		if(ret == -1){
+                			return;
+                		}
                         destRect = destRect(bmp.getWidth(),bmp.getHeight());
                         
                         c = mSurfaceHolder.lockCanvas();
@@ -164,7 +167,7 @@ public class MjpegView extends SurfaceView implements SurfaceHolder.Callback {
 
                     }catch (IOException e){ 
                 	
-                }finally { 
+                    }finally { 
                     	if (c != null) mSurfaceHolder.unlockCanvasAndPost(c); 
                     }
                 }
@@ -173,8 +176,6 @@ public class MjpegView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void init(Context context) {
-    	
-        //SurfaceHolder holder = getHolder();
     	holder = getHolder();
     	saved_context = context;
         holder.addCallback(this);
@@ -223,6 +224,7 @@ public class MjpegView extends SurfaceView implements SurfaceHolder.Callback {
                 retry = false;
             } catch (InterruptedException e) {}
         }
+
     }
     
     public MjpegView(Context context, AttributeSet attrs) { 
@@ -250,4 +252,9 @@ public class MjpegView extends SurfaceView implements SurfaceHolder.Callback {
     public void setOverlayBackgroundColor(int c) { overlayBackgroundColor = c; }
     public void setOverlayPosition(int p) { ovlPos = p; }
     public void setDisplayMode(int s) { displayMode = s; }
+    
+	public void setResolution(int w, int h){
+		IMG_WIDTH = w;
+		IMG_HEIGHT = h;
+	}
 }

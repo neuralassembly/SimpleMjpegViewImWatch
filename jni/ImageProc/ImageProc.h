@@ -37,6 +37,6 @@ METHODDEF(void) memory_term_source (j_decompress_ptr cinfo);
 /* end of libjpeg */
 
 
-void processimage (const void *p, int l, int *rgbbuf);
-void Java_com_camera_simplemjpeg_imwatch_MjpegInputStream_pixeltorgb(JNIEnv* env,jobject thiz, jbyteArray jp, jint l, jintArray ji);
+int processimage (const void *p, int l, int *rgbbuf, int w, int h);
+int Java_com_camera_simplemjpeg_imwatch_MjpegInputStream_pixeltorgb(JNIEnv* env,jobject thiz, jbyteArray jp, jint l, jintArray ji, jint w, jint h);
 

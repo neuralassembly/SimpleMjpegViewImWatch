@@ -9,4 +9,8 @@
         android:layout_height="0dip"
 		android:layout_weight="1"
         />
+	<Button android:id="@+id/network_configuration_start"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/settings" />
 </LinearLayout>

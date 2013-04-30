@@ -49,7 +49,7 @@ public class MjpegInputStream extends DataInputStream {
     static {
     	System.loadLibrary("ImageProc");
     }
-    public native void pixeltorgb(byte[] jp, int l, int[] rgb);
+    public native int pixeltorgb(byte[] jp, int l, int[] rgb, int w, int h);
 	
     public static MjpegInputStream read(String surl) {
     	try {
@@ -195,7 +195,7 @@ public class MjpegInputStream extends DataInputStream {
         }
     }
     
-    public void readMjpegFrame(Bitmap bmp) throws IOException {
+    public int readMjpegFrame(Bitmap bmp) throws IOException {
         mark(FRAME_MAX_LENGTH);
         int headerLen;
         try{
@@ -203,7 +203,7 @@ public class MjpegInputStream extends DataInputStream {
         }catch(IOException e){
         	if(DEBUG) Log.d(TAG,"IOException in betting headerLen.");
         	reset();
-        	return;
+        	return -1;
         }
         reset();
 
@@ -237,7 +237,7 @@ public class MjpegInputStream extends DataInputStream {
         }catch (IOException e) { 
         	if(DEBUG) Log.d(TAG,"IOException in parseContentLength");
         	reset();
-        	return;
+        	return -1;
         }
         mContentLength = ContentLengthNew;
         reset();
@@ -261,10 +261,14 @@ public class MjpegInputStream extends DataInputStream {
         		height = bmp.getHeight();
         		rgbbuf= new int[width*height];
         	}
-        	pixeltorgb(frameData, mContentLength, rgbbuf);
+        	int ret = pixeltorgb(frameData, mContentLength, rgbbuf, width, height);
+        	if(ret == -1){
+        		return -1;
+        	}
         	bmp.setPixels(rgbbuf,0,width,0,0,width,height);
-        }else{
+        	
         }
+        return 0;
     }
     public void setSkip(int s){
     	skip = s;
