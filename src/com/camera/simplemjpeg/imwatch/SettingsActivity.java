@@ -1,6 +1,5 @@
 package com.camera.simplemjpeg.imwatch;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView.BufferType;
@@ -322,15 +320,21 @@ public class SettingsActivity extends Activity {
         
         port_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) { 
-                RadioButton radioButton = (RadioButton) findViewById(checkedId);
-                port_input.setText(radioButton.getText());
+                if(checkedId == R.id.port_80){
+                	port_input.setText(getString(R.string.port_80));
+                }else if(checkedId == R.id.port_8080){
+                	port_input.setText(getString(R.string.port_8080));
+                }
             }
         });
         
         command_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) { 
-                RadioButton radioButton = (RadioButton) findViewById(checkedId);
-                command_input.setText(radioButton.getText());
+                if(checkedId == R.id.command_streaming){
+                	command_input.setText(getString(R.string.command_streaming));
+                }else if(checkedId == R.id.command_videofeed){
+                	command_input.setText(getString(R.string.command_videofeed));
+                }
             }
         });
         

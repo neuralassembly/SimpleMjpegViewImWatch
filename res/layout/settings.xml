@@ -199,17 +199,17 @@
 			
 			   <RadioGroup 
 			       	android:id="@+id/port_radiogroup"
-			       	android:orientation="horizontal"
+			       	android:orientation="vertical"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content">
 			        <RadioButton android:id="@+id/port_80"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
-			            android:text="@string/port_80" />
+			            android:text="@string/port_80_with_explanation" />
 			        <RadioButton android:id="@+id/port_8080"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
-			            android:text="@string/port_8080" />
+			            android:text="@string/port_8080_with_explanation" />
     			</RadioGroup>
 			
     	 </LinearLayout>
@@ -219,27 +219,33 @@
 			android:layout_height="wrap_content" 
 			android:text="@string/command_setting_label"/>
 
-		<EditText
-				android:id="@+id/command_input"
-				android:layout_width="200dp" 
-				android:layout_height="wrap_content"
-				android:gravity="left|center_vertical"
-				android:singleLine="true"
-				android:inputType="text"/>
-
+     	<LinearLayout
+    		android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center">
+			<EditText
+					android:id="@+id/command_input"
+					android:layout_width="200dp" 
+					android:layout_height="wrap_content"
+					android:gravity="left|center_vertical"
+					android:singleLine="true"
+					android:inputType="text"/>
+		</LinearLayout>
 		<RadioGroup 
 			       	android:id="@+id/command_radiogroup"
-			       	android:orientation="horizontal"
+			       	android:orientation="vertical"
 			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content">
+			        android:layout_height="wrap_content"
+			        android:gravity="center">
 			        <RadioButton android:id="@+id/command_streaming"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
-			            android:text="@string/command_streaming" />
+			            android:text="@string/command_streaming_with_explanation" />
 			        <RadioButton android:id="@+id/command_videofeed"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
-			            android:text="@string/command_videofeed" />
+			            android:text="@string/command_videofeed_with_explanation" />
 		</RadioGroup>
 				
      			

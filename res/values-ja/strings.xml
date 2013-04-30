@@ -25,8 +25,12 @@
 	<string name="address_dot">.</string>
 	<string name="port_80">80</string>
 	<string name="port_8080">8080</string>
+	<string name="port_80_with_explanation">80 (Ai-ball用)</string>
+	<string name="port_8080_with_explanation">8080 (IP Webcam用)</string>	
 	<string name="command_streaming">\?action=stream</string>
 	<string name="command_videofeed">videofeed</string>
+	<string name="command_streaming_with_explanation">\?action=stream (Ai-ball用)</string>
+	<string name="command_videofeed_with_explanation">videofeed (IP Webcam用)</string>
 	
 	<string name="settings_done">完了</string>
 </resources>
