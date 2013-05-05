@@ -36,7 +36,10 @@ public class MjpegActivity extends Activity {
 	private int ip_ad4 = 1;
 	private int ip_port = 8080;
 	private String ip_command = "videofeed";
-
+	String URL;
+	
+	private boolean suspending = false;
+	
     private MjpegView mv;
     private Button config_button;
 
@@ -94,7 +97,7 @@ public class MjpegActivity extends Activity {
         sb.append(ip_port);
         sb.append(s_slash);
         sb.append(ip_command);        
-        String URL = new String(sb);
+        URL = new String(sb);
 
         mv = (MjpegView) findViewById(R.id.mv);
         
@@ -110,7 +113,10 @@ public class MjpegActivity extends Activity {
     	if(DEBUG) Log.d(TAG,"onResume()");
         super.onResume();
         if(mv!=null){
-        	mv.resumePlayback();
+        	if(suspending){
+        		suspending = false;
+        		new RestartApp().execute();
+        	}
         }
 
     }
@@ -124,6 +130,7 @@ public class MjpegActivity extends Activity {
         super.onPause();
         if(mv!=null){
         	mv.stopPlayback();
+        	suspending = true;
         }
     }
     public void onStop() {
