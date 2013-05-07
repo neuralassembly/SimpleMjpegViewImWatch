@@ -35,7 +35,17 @@ public class SettingsActivity extends Activity {
 	Button address1_decrement;	
 	Button address2_decrement;	
 	Button address3_decrement;	
-	Button address4_decrement;	
+	Button address4_decrement;
+	
+	Button address1_increment_10;
+	Button address2_increment_10;
+	Button address3_increment_10;
+	Button address4_increment_10;
+	
+	Button address1_decrement_10;	
+	Button address2_decrement_10;	
+	Button address3_decrement_10;	
+	Button address4_decrement_10;
 	
 	RadioGroup port_group;
 	RadioGroup command_group;
@@ -305,6 +315,193 @@ public class SettingsActivity extends Activity {
         				}
         				if(val>0 && val<=255){
         					val -= 1;	
+        				}else if(val <= 0){
+        					val = 0;
+        				}else if(val > 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad4 = val;
+        				address4_input.setText(String.valueOf(ip_ad4), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+        
+        address1_increment_10 = (Button)findViewById(R.id.address1_increment_10);
+        address1_increment_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address1_input.getText().toString();
+        				int val =ip_ad1;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=0 && val<=245){
+        					val += 10;	
+        				}else if(val < 0){
+        					val = 0;
+        				}else if(val >= 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad1 = val;
+        				address1_input.setText(String.valueOf(ip_ad1), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+        address2_increment_10 = (Button)findViewById(R.id.address2_increment_10);
+        address2_increment_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address2_input.getText().toString();
+        				int val =ip_ad2;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=0 && val<=245){
+        					val += 10;	
+        				}else if(val < 0){
+        					val = 0;
+        				}else if(val >= 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad2 = val;
+        				address2_input.setText(String.valueOf(ip_ad2), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+        address3_increment_10 = (Button)findViewById(R.id.address3_increment_10);
+        address3_increment_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address3_input.getText().toString();
+        				int val =ip_ad3;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=0 && val<=245){
+        					val += 10;	
+        				}else if(val < 0){
+        					val = 0;
+        				}else if(val >= 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad3 = val;
+        				address3_input.setText(String.valueOf(ip_ad3), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+        address4_increment_10 = (Button)findViewById(R.id.address4_increment_10);
+        address4_increment_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address4_input.getText().toString();
+        				int val =ip_ad4;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=0 && val<=245){
+        					val += 10;	
+        				}else if(val < 0){
+        					val = 0;
+        				}else if(val >= 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad4 = val;
+        				address4_input.setText(String.valueOf(ip_ad4), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+        address1_decrement_10 = (Button)findViewById(R.id.address1_decrement_10);
+        address1_decrement_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address1_input.getText().toString();
+        				int val =ip_ad1;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=10 && val<=255){
+        					val -= 10;	
+        				}else if(val <= 0){
+        					val = 0;
+        				}else if(val > 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad1 = val;
+        				address1_input.setText(String.valueOf(ip_ad1), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+        
+        address2_decrement_10 = (Button)findViewById(R.id.address2_decrement_10);
+        address2_decrement_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address2_input.getText().toString();
+        				int val =ip_ad2;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=10 && val<=255){
+        					val -= 10;	
+        				}else if(val <= 0){
+        					val = 0;
+        				}else if(val > 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad2 = val;
+        				address2_input.setText(String.valueOf(ip_ad2), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+        address3_decrement_10 = (Button)findViewById(R.id.address3_decrement_10);
+        address3_decrement_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address3_input.getText().toString();
+        				int val =ip_ad3;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=10 && val<=255){
+        					val -= 10;	
+        				}else if(val <= 0){
+        					val = 0;
+        				}else if(val > 255){
+        					val = 255;
+        				}
+        				
+        				ip_ad3 = val;
+        				address3_input.setText(String.valueOf(ip_ad3), BufferType.NORMAL);
+
+        			}
+        		}        		
+        );
+       
+        address4_decrement_10 = (Button)findViewById(R.id.address4_decrement_10);
+        address4_decrement_10.setOnClickListener(
+        		new View.OnClickListener(){
+        			public void onClick(View view){       
+        				String s = address4_input.getText().toString();
+        				int val =ip_ad4;
+        				if(!"".equals(s)){
+        					val = Integer.parseInt(s);
+        				}
+        				if(val>=10 && val<=255){
+        					val -= 10;	
         				}else if(val <= 0){
         					val = 0;
         				}else if(val > 255){

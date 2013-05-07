@@ -22,6 +22,8 @@
 	
 	<string name="digits_increment">+</string>
 	<string name="digits_decrement">-</string>
+	<string name="digits_increment_10">++</string>
+	<string name="digits_decrement_10">--</string>
 	<string name="address_dot">.</string>
 	<string name="port_80">80</string>
 	<string name="port_8080">8080</string>
